@@ -1,0 +1,71 @@
+CREAT TABLE users(
+  uid Int,
+  name char,
+  city char,
+  email char,
+  timezone char,
+  PRIMARY KEY(uid),
+)
+CREAT TABLE follows(
+  uid Int,
+  started DATE,
+  PRIMARY KEY(uid),
+  FOREIGN KEY(uid) REFERENCES users)
+)
+CREATE TABLE Lists_cre(
+  uid int,
+  name char,
+  PRIMARY KEY (uid,name),
+  FOREIGN KEY (uid) REFERENCES Users ON DELETE CASCADE)
+)
+CREATE TABLE include(
+  uid int,
+  name char,
+  PRIMARY KEY (uid,name),
+  FOREIGN KEY (uid) REFERENCES Users)
+)
+CREAT TABLE tweets_wri(
+  tdate DATE,
+  text char,
+  uid int,
+  PRIMARY KEY (tdate,uid),
+  FOREIGN KEY (uid) REFERENCES Users ON DELETE CASCADE)
+)
+CREAT TABLE follows(
+  tdate DATE,
+  PRIMARY KEY(tdate),
+  FOREIGN KEY(tdate) REFERENCES tdate)
+)
+CREAT TABLE retweets(
+  tdate DATE,
+  rdate DATE,
+  uid int,
+  PRIMARY KEY(tdate,uid),
+  FOREIGN KEY (uid) REFERENCES Users)
+  FOREIGN KEY (tdate) REFERENCES tweets)
+)
+CREAT TABLE metionsH(
+  tdate DATE,
+  term char,
+  PRIMARY KEY(tdate,term),
+  FOREIGN KEY (term, REFERENCES hashtags),
+  FOREIGN KEY (tdate) REFERENCES tweets),
+)
+CREAT TABLE metionsU(
+  tdate DATE,
+  shortURL char,
+  PRIMARY KEY(tdate,shortURL),
+  FOREIGN KEY (shortURL, REFERENCES URLs),
+  FOREIGN KEY (tdate) REFERENCES tweets),
+)
+CREAT TABLE Verified(
+  uid char,
+  vdate DATE,
+  PRIMARY KEY(uid),
+  FOREIGN KEY(uid) REFERENCES users ON DELETE CASCADE)
+)
+CREAT TABLE Proceted(
+  uid char,
+  PRIMARY KEY(uid),
+  FOREIGN KEY(uid) REFERENCES users ON DELETE CASCADE)
+)
