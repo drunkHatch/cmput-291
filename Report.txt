@@ -39,10 +39,16 @@ use sql to display detailed information of a specific product.
 Agent functions
 
 Set up a delivery:
-
+agents update 
+Agent input pick up time(null for default),(drop off will be set to null as well) to add order to delivery.
 Update a delivery:
+agent  input a tracking number to select a delivery.Delivery detail is displayed after selection.
+Agent can update the pick up time and/or the drop off time 
+Agent can also delete the delivery.
 
-Add to stock:
+Add to stock
+agent input product id,store id,qty,uprice in python to update a carrries in sql database.
+
 
 
 (c) testing strategy 
@@ -69,7 +75,7 @@ customer(place order):Yuntian Zhang
 customer(view order):Yuqi Zhang
 
 agent(set up):Yuqi Zhang
-agent(update):
+agent(update):Yuqi Zhang
 agent(add):Yuntian Zhang
 
 allocated and spent for tasks, the person responsible and the 
