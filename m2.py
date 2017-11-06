@@ -243,12 +243,48 @@ def place_order(id):
 
         basket={}
 def list_order(id):
-    global c, conn
+    global c, conn, basket, current_id
     
+   
     
     print("list_order")
 def setup(id):
-    global c, conn
+    global c, conn, basket, current_id
+
+    #create a delivery
+    
+    # create trackingno
+    trackingno = randint(1000, 100000)
+    c.execute("SELECT trackingno FROM deliveries;")
+    trackingno_list = c.fetchall()    
+    while (trackingno in trackingno_list):
+        trackingno = randint(1000, 100000)
+    # done trackingno
+    # enter an oid
+    done = False
+    while(not done):
+        command = input("Please choose to add orders(add) or finish adding(fin): ")
+        if command == "add":
+            exist = False
+            while(not exist):
+                order_id = input("Please add orders to deliveries: ")
+            
+        elif command == "fin":
+            done = True
+        else:
+            print("wrong command, please enter again")
+        
+    # check validility
+    # add pickup time y/n
+    
+    # insert into deliveries
+    #if trackingno not in trackingno_list:
+        #c.execute("SELECT address FROM customers WHERE cid =:id;", {"id":id})
+        #tempaddress = c.fetchone()    
+        #address = tempaddress[0]    
+    print("trackingno is created successfully")
+    
+    #add orders to a delivery (some with and others without a pick up time)        
     
     print("setup")
 def Update(id):
