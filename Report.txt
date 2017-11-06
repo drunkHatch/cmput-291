@@ -1,0 +1,90 @@
+
+(a) a general overview of the system with a small user guide
+This is a python command line based shopping app. 
+You can login in as agents or customers, for each role there are specific move you can do.
+
+When you chose cutomers , you can sign in or sign up.
+After sign in you can
+1 type s to serach for product
+2 type p to place all order for item in your basket
+3 type l to list all your oders
+4 type o to log out
+
+When you chose cutomers , you can sign in.
+After sign in you can
+1 type s to Set up a delivery.
+2 type u to Update a delivery
+3 type i to Add to stock
+4 type o to log out
+
+(b) a detailed design of the software 
+Login:login to custom or agents, record id.
+
+cutomers functions
+serach for product: Use sql to get mulity sub-list of required information,
+merge them together in to a huge list to display all the infomation.
+If product is selected, use sql to get info about the product and display it.(You can chose to add it to your basket)
+After the product is added to basket, update the basket and save it as a global variables.
+
+place all order for item in your basket:
+Use sql to get get info about quantites of a product a store carries for a specific product in basket.
+If not enough quantits promp use to change quantity.
+Then place the order(update database)
+
+list all your oders:
+Use sql to get all oders for a specific user.
+If a oder is selected using python commands.
+use sql to display detailed information of a specific product.
+
+Agent functions
+
+Set up a delivery:
+
+Update a delivery:
+
+Add to stock:
+
+
+(c) testing strategy 
+We used our own data base and data for testing.
+They are two parts of coding testing
+1 sql code
+We test our sql on in sqlite3 first by assigning specific value for it. 
+If it passed, we will then implement in to python and then 
+test it on python code on variables instead of specific fixed value.
+For parts need to update database we run the insturction first and then 
+use sqlite3 to check if the database is updated correctly
+
+2 python code
+Python code are mostly skeleton of the program.
+For those does't involve sql, we simply test it.
+For those invovle sql , please see above part for detail.
+
+(d) group work strategy
+Group number name: 1 Yuqi Zhang and Yuntian Zhang
+
+project break-down:
+customer(search):Yuntian Zhang and Yuqi Zhang
+customer(place order):Yuntian Zhang 
+customer(view order):Yuqi Zhang
+
+agent(set up):Yuqi Zhang
+agent(update):
+agent(add):
+
+allocated and spent for tasks, the person responsible and the 
+progress made for each task is given:
+
+customer(search):Yuntian Zhang 3/5 Yuqi Zhang 2/5 total 7 hours progress:completed
+customer(place order):Yuntian Zhang 4 hours progress:completed
+customer(view order):Yuqi Zhang 2 hours progress:completed
+
+agent(set up):Yuqi Zhang 1 hour progress:completed
+agent(update):           1 hour progress:completed
+agent(add):              1 hour progress :completed
+
+
+the method of coordination: 
+For customer(search) we use 1 pc and code/debug together.
+For other part we write our own code and ask partnet for debug or when partner facing unsolveable difficult.
+
