@@ -70,7 +70,7 @@ customer(view order):Yuqi Zhang
 
 agent(set up):Yuqi Zhang
 agent(update):
-agent(add):
+agent(add):Yuntian Zhang
 
 allocated and spent for tasks, the person responsible and the 
 progress made for each task is given:
