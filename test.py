@@ -1,4 +1,20 @@
-#login
+import sqlite3
+import itertools
+import random
+from operator import itemgetter, attrgetter
+from random import *
+
+database ='p1.db'
+#basket= dict()
+#basket={"p10 20":110,}
+
+conn = sqlite3.connect(database)
+
+c = conn.cursor()
+c.execute('PRAGMA foreign_keys=ON;')
+
+current_id = -11
+
 def login(login_type):
     global c, conn,current_id
  
@@ -19,6 +35,7 @@ def login(login_type):
                 print("Login failed, Please try again")
                 login(login_type)
                 #if valid == True:
+            login(login_type)
         elif sign == "u":
             # complete later
             c_id = input("Please fuking enter your new customer id: \n")
@@ -79,6 +96,8 @@ def select_type():
     return login_type
 
 def check_id(id):
+    global c, conn,current_id
+    
     c.execute("SELECT cid FROM customers WHERE cid=:id;", {"id":id}) 
     row = c.fetchone()
     if row == None:
@@ -89,7 +108,8 @@ def check_id(id):
 
 
 def check_exist(c_id, c_pwd):
-    # 
+    global c, conn,current_id
+ 
     c.execute("SELECT cid FROM customers WHERE cid=:id AND pwd=:pd;", {"id":c_id,"pd":c_pwd}) 
     row = c.fetchone()
     
@@ -101,7 +121,8 @@ def check_exist(c_id, c_pwd):
     return valid
 
 def check_existA(a_id, a_pwd):
-    # 
+    global c, conn,current_id
+
     c.execute("SELECT aid FROM agents WHERE aid=:id AND pwd=:pd;", {"id":a_id,"pd":a_pwd}) 
     row = c.fetchone()
     
@@ -278,6 +299,8 @@ def search(id):
             current = []
 
 def operations():
+    global c, conn,current_id
+    
     a_input = input("Please enter command :")
     if a_input == "nextpage":
         return "nextpage"
@@ -302,7 +325,7 @@ def merge2(output, adder):
         if len(output[i]) != 5:
             output[i].append(0) 
 def place_order(id):
-    global c, conn, basket
+    global c, conn,current_id, basket
     valid = True
     oid = randint(1, 1000)
     c.execute("SELECT oid FROM olines;")
@@ -346,7 +369,7 @@ def place_order(id):
 
         basket={}
 def list_order(id):
-    global c, conn
+    global c, conn,current_id, basket
     
     #current_cid = "c50"
     c.execute("SELECT o.oid, o.odate, COUNT(distinct l.pid), SUM(l.qty * l.uprice) FROM orders o LEFT JOIN olines l \
@@ -397,7 +420,7 @@ def list_order(id):
                     print("wrong action, please enter command again")
                     valid = False                        
 def agents (id):
-    global c, conn,current_id
+    global c, conn,current_id, basket
     function_type = input("Here are avaliable functions\n Set up a delivery(Enter s)\n Update a delivery(Enter u)\n Add to stock(Enter a)\n log out(Enter o)\n")
     if function_type == "s":
         setup(id)
@@ -436,7 +459,7 @@ def setup(id):
         else:
             print("wrong command, please enter again")
 def Update(id):
-    global c, conn
+    global c, conn,current_id, basket
     
     trackingNo = input("Plese enter trackingNo")
     c.execute("select * from deliveries d where d.trackingNo =:num;", {"num":int(trackingNo)})
@@ -509,7 +532,7 @@ def Update(id):
                 
     print("Update")     
 def add(id):
-    global c, conn,current_id
+    global c, conn,current_id, basket
     valid = False
     while(not valid):
         p_id = input("Please enter product id\n")
